@@ -1,34 +1,36 @@
-//
-//  ofxTextInputField.cpp
-//  ofxTextInputField
-//
-//  Created by Elliot Woods on 12/09/2011.
-//  Copyright 2011 Kimchi and Chips.
-//
-//  modified by James George 2/12/2011
+/**
+ *  ofxTextInputField.cpp
+ *  ofxTextInputField
+ *
+ *  Created by Elliot Woods on 12/09/2011.
+ *  Copyright 2011 Kimchi and Chips.
+ *
+ *  modified by James George 2/12/2011 to work with ofxTimeline
+ *
+ *
+ * MIT license
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ */
 
-//	MIT license
-//	http://www.opensource.org/licenses/mit-license.php
-//
-//
 
 #include "ofxTextInputField.h"
 
 
 ofxTextInputField::ofxTextInputField() {
-	text="";
-	cursorPosition=0;
-	cursorx=0;
-	cursory=0;
+	text = "";
+	cursorPosition = 0;
+	cursorx = 0;
+	cursory = 0;
 }
 
-void ofxTextInputField::enable() {
-	ofAddListener(ofEvents().keyPressed, this, &ofxTextInputField::keyPressed);
-}
-
-void ofxTextInputField::disable() {
-	ofRemoveListener(ofEvents().keyPressed, this, &ofxTextInputField::keyPressed);
-}
+//void ofxTextInputField::enable() {
+//	ofAddListener(ofEvents().keyPressed, this, &ofxTextInputField::keyPressed);
+//}
+//
+//void ofxTextInputField::disable() {
+//	ofRemoveListener(ofEvents().keyPressed, this, &ofxTextInputField::keyPressed);
+//}
 
 void ofxTextInputField::draw(int x, int y) {
 	ofPushMatrix();
@@ -55,20 +57,19 @@ void ofxTextInputField::keyPressed(ofKeyEventArgs& args) {
 	//add charachter (non unicode sorry!)
 
 	int key = args.key;
-	if (key == OF_KEY_RETURN) {
-		return;
+//	if (key == OF_KEY_RETURN) {
+//		return;
 //		ofNotifyEvent(evtEnter, text, this);
 //		if (evtEnter.empty()) {
 //			text.insert(text.begin()+cursorPosition, '\n');
 //			cursorPosition++;
 //		}
-	}
+//	}
 	
 	if (key >=32 && key <=126) {
 		text.insert(text.begin()+cursorPosition, key);
 		cursorPosition++;
 	}
-	
 	
 	if (key==OF_KEY_BACKSPACE) {
 		if (cursorPosition>0) {
